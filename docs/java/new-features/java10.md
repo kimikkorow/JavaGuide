@@ -53,7 +53,7 @@ var 并不会改变 Java 是一门静态类型语言的事实，编译器负责�
 
 ## G1 并行 Full GC
 
-从 Java9 开始 G1 就了默认的垃圾回收器，G1 是以一种低延时的垃圾回收器来设计的，旨在避免进行 Full GC,但是 Java9 的 G1 的 FullGC 依然是使用单线程去完成标记清除算法,这可能会导致垃圾回收期在无法回收内存的时候触发 Full GC。
+从 Java9 开始 G1 就成了默认的垃圾回收器，G1 是以一种低延时的垃圾回收器来设计的，旨在避免进行 Full GC,但是 Java9 的 G1 的 FullGC 依然是使用单线程去完成标记清除算法,这可能会导致垃圾回收期在无法回收内存的时候触发 Full GC。
 
 为了最大限度地减少 Full GC 造成的应用停顿的影响，从 Java10 开始，G1 的 FullGC 改为并行的标记清除算法，同时会使用与年轻代回收和混合回收相同的并行工作线程数量，从而减少了 Full GC 的发生，以带来更好的性能提升、更大的吞吐量。
 
@@ -106,12 +106,14 @@ Oracle 的 HotSpot VM 便附带两个用 C++ 实现的 JIT compiler：C1 及 C2�
 
 - **线程-局部管控**：Java 10 中线程管控引入 JVM 安全点的概念，将允许在不运行全局 JVM 安全点的情况下实现线程回调，由线程本身或者 JVM 线程来执行，同时保持线程处于阻塞状态，这种方式使得停止单个线程变成可能，而不是只能启用或停止所有线程
 - **备用存储装置上的堆分配**：Java 10 中将使得 JVM 能够使用适用于不同类型的存储机制的堆，在可选内存设备上进行堆内存分配
-- ......
+- ……
 
 ## 参考
 
-- Java 10 Features and Enhancements : https://howtodoinjava.com/java10/java10-features/
+- Java 10 Features and Enhancements : <https://howtodoinjava.com/java10/java10-features/>
 
 - Guide to Java10 : <https://www.baeldung.com/java-10-overview>
 
-- 4 Class Data Sharing : https://docs.oracle.com/javase/10/vm/class-data-sharing.htm#JSJVM-GUID-7EAA3411-8CF0-4D19-BD05-DF5E1780AA91
+- 4 Class Data Sharing : <https://docs.oracle.com/javase/10/vm/class-data-sharing.htm#JSJVM-GUID-7EAA3411-8CF0-4D19-BD05-DF5E1780AA91>
+
+<!-- @include: @article-footer.snippet.md -->
